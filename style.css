@@ -1,0 +1,199 @@
+
+html, body {
+    font: 400 1/1.3em "Source Sans Pro", Helvetica, Arial, sans-serif !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/*
+    rouge : rgba(218, 0, 21, 1)
+    vert : rgba(151, 191, 11, 1)
+*/
+
+::-webkit-input-placeholder { color: rgb(50, 50, 50) !important; }
+::-moz-placeholder { color: rgb(50, 50, 50) !important; }
+:-ms-input-placeholder { color: rgb(50, 50, 50) !important; }
+input:-moz-placeholder { color: rgb(50, 50, 50) !important; }
+
+div[data-role="page"] {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+header h1 {
+    background-color: rgba(151, 191, 11, 1);
+    color: rgba(255, 255, 255, 1);
+    font: 700 1.3em/1.5em "Source Sans Pro", Helvetica, Arial, sans-serif !important;
+    letter-spacing: .04em;
+    margin: 0 !important;
+    padding: .66em 0 !important;
+}
+
+div[data-role="content"] {
+    margin: 0 auto;
+    width: 600px;
+}
+
+input.ui-input-text {
+    border-bottom: 1px dashed rgba(218, 0, 21, .33) !important;
+    font: 400 1.3em/1em "The Girl Next Door", cursive;
+    padding-bottom: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-top: 1em !important;
+    text-align: center;
+}
+
+ul.ui-listview {
+    margin: 0 auto !important;
+    padding: 0 !important;
+    width: 100%;
+}
+
+ul.ui-listview li {
+    padding: .33em 0 !important;
+}
+
+ul.ui-listview li a {
+    color: rgb(50, 50, 50) !important;
+    font: 400 1em/1.3em "Source Sans Pro", Helvetica, Arial, sans-serif !important;
+    text-align: center !important;
+    text-decoration: none !important;
+}
+
+ul.ui-listview li a:hover {
+    color: rgb(218, 0, 21) !important;
+    text-decoration: underline !important;
+}
+
+.ui-dialog-contain .ui-header {
+    background-color: rgb(151, 191, 11) !important;
+    padding: .5em 1em !important;
+}
+
+.ui-dialog-contain .ui-header h1.ui-title {
+    color: rgb(255, 255, 255);
+    font: 400 1.3em/1.3em "Source Sans Pro", Helvetica, Arial, sans-serif !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.ui-dialog-contain .ui-content {
+    padding: 2.5em 0 !important;
+    margin: 0 auto !important;
+    width: 85% !important;
+}
+
+.ui-dialog-contain .ui-content table {
+    border-collapse: collapse !important;
+    font: 400 1em/1.3em "Source Sans Pro", Helvetica, Arial, sans-serif !important;
+    margin: 0 auto !important;
+}
+
+.ui-dialog-contain .ui-content table thead {
+    background: rgb(151, 191, 11);
+    border: 1px solid rgb(218, 0, 21) !important;
+    border-collapse: collapse !important;
+}
+
+.ui-dialog-contain .ui-content table thead tr th {
+    color: white;
+    border: 1px solid rgb(50, 50, 50) !important;
+    font: 600 1.2em/1.3em "Source Sans Pro", Helvetica, Arial, sans-serif !important;
+    width: 300px !important;
+    text-align: center !important;
+}
+
+.ui-dialog-contain .ui-content table tbody tr th {
+    border: 1px solid rgb(50, 50, 50) !important;
+    color: rgb(50, 50, 50);
+    font: 600 1em/1.3em "Source Sans Pro", Helvetica, Arial, sans-serif !important;
+    padding: .66em .66em !important;
+    text-align: left !important;
+    vertical-align: top;
+    width: 50% !important;
+}
+
+.ui-dialog-contain .ui-content table tbody tr th:first-letter {
+    text-transform: capitalize;
+}
+
+.ui-dialog-contain .ui-content table tbody tr td {
+    border: 1px solid rgb(50, 50, 50) !important;
+    color: rgb(50, 50, 50);
+    font: 400 1em/1.3em "Source Sans Pro", Helvetica, Arial, sans-serif !important;
+    padding: .66em .66em !important;
+    text-align: center !important;
+    vertical-align: top;
+    width: 50% !important;
+}
+
+.ui-content[role="main"] p {
+    background: url(error.png) top center no-repeat !important;
+    background-size: 128px 128px !important;
+    color: rgb(218, 0, 21);
+    font: 300 1.2em/1.3em "Source Sans Pro", Helvetica, Arial, sans-serif !important;
+    padding-top: 185px !important;
+    text-align: center !important;
+}
+
+footer a {
+    color: rgb(151, 191, 11) !important;
+    font: 300 .85em/1.3em "Source Sans Pro", Helvetica, Arial, sans-serif !important;
+    text-decoration: underline;
+}
+
+footer a:hover {
+    color: rgb(218, 0, 21) !important;
+}
+
+@media all and (max-width: 35em) {
+    div[data-role="content"] {
+        width: 95% !important;
+    }
+    
+    input.ui-input-text {
+        border: 1px dashed rgba(218, 0, 21, .33) !important;
+        font: 400 1.1em/1em "The Girl Next Door", cursive;
+    }
+    .ui-dialog-contain .ui-content table tbody tr td,
+    .ui-dialog-contain .ui-content table tbody tr th { 
+        width: 100% !important; 
+    }
+    .ui-dialog-contain .ui-content table tbody tr th { 
+        border-bottom:none !important;
+        text-align:center !important;
+    }
+    
+    .ui-table-reflow td .ui-table-cell-label, .ui-table-reflow th .ui-table-cell-label {
+        display:none;
+    }
+    
+    .ui-dialog-contain .ui-content {
+        padding-top:0 !important;
+    }
+    
+    .ui-dialog-contain .ui-content table thead {
+        border:none !important;
+    }
+}
+
+abbr {
+    border:none;
+}
+
+
+.ui-icon-delete:before {
+    content:"X";
+    font-family:"The Girl Next Door";
+    font-size:larger;
+    color:black;
+}
+.ui-icon-delete:hover:before {
+    color:white;
+}
+
+.ui-dialog-contain .ui-header h1.ui-title {
+    padding-left: 1ex !important;
+}
+
