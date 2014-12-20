@@ -49,32 +49,6 @@ if (date('Y-m-d', strtotime($lastUpdate->date)) != date('Y-m-d')) {
     file_put_contents($timestampFile, json_encode(new DateTime()));
 }
 setlocale(LC_TIME, 'fr_FR.UTF-8', 'fr_FR', 'fr');
-/*
- * array(11) {
-  [0]=>
-  string(11) "238_ENV_106"
-  [1]=>
-  string(28) "Déchèterie - Koenigshoffen"
-  [2]=>
-  string(10) "8h00-19h00"
-  [3]=>
-  string(10) "8h00-19h00"
-  [4]=>
-  string(10) "8h00-19h00"
-  [5]=>
-  string(10) "8h00-19h00"
-  [6]=>
-  string(10) "8h00-12h00"
-  [7]=>
-  string(10) "8h00-19h00"
-  [8]=>
-  string(10) "8h00-19h00"
-  [9]=>
-  string(0) ""
-  [10]=>
-  string(0) ""
-}
-* */
 $handle = fopen($url, 'r');
 while ($line = fgetcsv($handle, null, '|')) {
     $error = false;
