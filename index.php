@@ -18,14 +18,18 @@
 <meta charset="UTF-8" />
 <link rel="stylesheet"
 href="jquery.mobile-1.3.2/jquery.mobile.structure-1.3.2.min.css" />
-<link href='https://fonts.googleapis.com/css?family=The+Girl+Next+Door' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=The+Girl+Next+Door'
+    rel='stylesheet' type='text/css'>
+<link
+    href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900'
+    rel='stylesheet' type='text/css'>
 <link href='style.css' rel='stylesheet' type='text/css'>
 <script src="jquery-1.9.1.min.js"></script>
 <script async
 src="jquery.mobile-1.3.2/jquery.mobile-1.3.2.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="Horaires des services de la Communauté urbaine de Strasbourg" />
+<meta name="description"
+    content="Horaires des services de la Communauté urbaine de Strasbourg" />
 <link rel="icon" href="favicon_32.png" />
 </head>
 <body>
@@ -77,7 +81,9 @@ while ($line = fgetcsv($handle, null, '|')) {
             }
             $hours[$line[1]] .= '<tr><th>'.strftime(
                 '%A %e %B', $date->getTimestamp()
-            ).'</th><td>'.str_replace('*', '', str_replace(';', '<br/>', $line[$i])).'</td></tr>';
+            ).'</th><td>'.str_replace(
+                '*', '', str_replace(';', '<br/>', $line[$i])
+            ).'</td></tr>';
             $date->add(new DateInterval('P1D'));
         }
         if (!$error) {
@@ -98,7 +104,8 @@ while ($line = fgetcsv($handle, null, '|')) {
 </div>
 <?php
 foreach ($hours as $name=>$content) {
-    echo '<div data-role="dialog" itemscope itemtype="http://schema.org/LocalBusiness" id="', urlencode($name), '">
+    echo '<div data-role="dialog" itemscope
+        itemtype="http://schema.org/LocalBusiness" id="', urlencode($name), '">
     <div data-role="header" data-theme="d">
         <h1 itemprop="name">', $name, '</h1>
     </div>
