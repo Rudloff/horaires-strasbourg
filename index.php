@@ -47,13 +47,19 @@ src="jquery.mobile-1.3.2/jquery.mobile-1.3.2.min.js"></script>
 $url = 'http://media.strasbourg.eu/alfresco/d/d/workspace/SpacesStore/'.
     'eb8550eb-a479-4037-9533-e06977765f9a/export_des_horaires.csv';
 $timestampFile = 'data/timestamp.json';
+$csvFile = 'data/export_des_horaires.csv';
 $lastUpdate = json_decode(file_get_contents($timestampFile));
 if (date('Y-m-d', strtotime($lastUpdate->date)) != date('Y-m-d')) {
-    file_put_contents('data/export_des_horaires.csv', file_get_contents($url));
+    file_put_contents(
+        $csvFile, file_get_contents(
+            'http://media.strasbourg.eu/alfresco/d/d/workspace/SpacesStore/'.
+            'eb8550eb-a479-4037-9533-e06977765f9a/export_des_horaires.csv'
+        )
+    );
     file_put_contents($timestampFile, json_encode(new DateTime()));
 }
 setlocale(LC_TIME, 'fr_FR.UTF-8', 'fr_FR', 'fr');
-$handle = fopen($url, 'r');
+$handle = fopen($csvFile, 'r');
 while ($line = fgetcsv($handle, null, '|')) {
     $error = false;
     if (!isset($headers)) {
