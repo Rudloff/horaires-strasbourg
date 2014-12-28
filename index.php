@@ -23,7 +23,7 @@ href="jquery.mobile-1.3.2/jquery.mobile.structure-1.3.2.min.css" />
 <link
     href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900'
     rel='stylesheet' type='text/css'>
-<link href='style.css' rel='stylesheet' type='text/css'>
+<link href='dist/main.css' rel='stylesheet' type='text/css'>
 <script src="jquery-1.9.1.min.js"></script>
 <script async
 src="jquery.mobile-1.3.2/jquery.mobile-1.3.2.min.js"></script>
