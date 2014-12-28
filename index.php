@@ -106,7 +106,7 @@ while ($line = fgetcsv($handle, null, '|')) {
     href="http://www.strasbourg.eu/ma-situation/professionnel/open-data/donnees/culture-patrimoine-open-data/horaires-ouverture-lieux-ouverts-publics-cus">
     Données fournies par la
     <abbr title="Communauté urbaine de Strasbourg">CUS</abbr></a>
-    <a target="_blank"href="https://github.com/Rudloff/horaires-strasbourg">
+    <a target="_blank" href="https://github.com/Rudloff/horaires-strasbourg">
         Code disponible sur GitHub</a>
 </footer>
 </div>
