@@ -31,6 +31,7 @@ src="jquery.mobile-1.3.2/jquery.mobile-1.3.2.min.js"></script>
 <meta name="description"
     content="Horaires des services de la Communauté urbaine de Strasbourg" />
 <link rel="icon" href="favicon_32.png" />
+<link rel="canonical" href="http://horaires-strasbourg.eu/" />
 </head>
 <body>
 <div data-role="page">
