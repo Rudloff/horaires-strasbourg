@@ -12,7 +12,7 @@
  * */
 ?>
 <!Doctype HTML>
-<html>
+<html lang="fr">
     <head>
 <title>Horaires de la Communauté urbaine de Strasbourg</title>
 <meta charset="UTF-8" />
@@ -78,8 +78,8 @@ while ($line = fgetcsv($handle, null, '|')) {
         <table data-role="table" class="ui-responsive">
             <thead>
     <tr>
-      <th>Jour</th>
-      <th>Horaires</th>
+      <th scope="col">Jour</th>
+      <th scope="col">Horaires</th>
     </tr>
   </thead>
   <tbody>';
@@ -92,7 +92,7 @@ while ($line = fgetcsv($handle, null, '|')) {
                 $error=true;
                 break;
             }
-            $hours[$line[1]] .= '<tr><th>'.strftime(
+            $hours[$line[1]] .= '<tr><th scope="row">'.strftime(
                 '%A %e %B', $date->getTimestamp()
             ).'</th><td>'.str_replace(
                 '*', '', str_replace(';', '<br/>', $line[$i])
