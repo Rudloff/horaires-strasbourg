@@ -17,16 +17,16 @@
 <title>Horaires de la Communauté urbaine de Strasbourg</title>
 <meta charset="UTF-8" />
 <link rel="stylesheet"
-href="jquery.mobile-1.3.2/jquery.mobile.structure-1.3.2.min.css" />
+href="bower_components/jquery-mobile-bower/css/jquery.mobile.structure-1.3.2.min.css" />
 <link href='https://fonts.googleapis.com/css?family=The+Girl+Next+Door'
     rel='stylesheet' type='text/css'>
 <link
     href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900'
     rel='stylesheet' type='text/css'>
 <link href='dist/main.css' rel='stylesheet' type='text/css'>
-<script src="jquery-1.9.1.min.js"></script>
+<script src="bower_components/jquery/jquery.min.js"></script>
 <script async
-src="jquery.mobile-1.3.2/jquery.mobile-1.3.2.min.js"></script>
+src="bower_components/jquery-mobile-bower/js/jquery.mobile-1.3.2.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description"
     content="Horaires des services de la Communauté urbaine de Strasbourg" />
