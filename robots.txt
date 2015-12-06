@@ -1,1 +1,1 @@
-Sitemap: http://horaires-strasbourg.eu/sitemap.txt
+Sitemap: https://horaires-strasbourg.netlib.re/sitemap.txt

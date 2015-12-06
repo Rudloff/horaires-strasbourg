@@ -1,9 +1,9 @@
 <?php
 /**
  * Display hours of various services in Strasbourg
- * 
+ *
  * PHP version 5.4.4
- * 
+ *
  * @category Open_Data
  * @package  Horaires
  * @author   Pierre Rudloff <contact@rudloff.pro>
@@ -31,13 +31,13 @@ src="jquery.mobile-1.3.2/jquery.mobile-1.3.2.min.js"></script>
 <meta name="description"
     content="Horaires des services de la Communauté urbaine de Strasbourg" />
 <link rel="icon" href="favicon_32.png" />
-<link rel="canonical" href="http://horaires-strasbourg.eu/" />
-<meta property="og:url" content="http://horaires-strasbourg.eu/" />
+<link rel="canonical" href="https://horaires-strasbourg.netlib.re/" />
+<meta property="og:url" content="https://horaires-strasbourg.netlib.re/" />
 <meta property="og:title"
     content="Horaires de la Communauté urbaine de Strasbourg" />
 <meta property="og:description"
     content="Horaires des services de la Communauté urbaine de Strasbourg" />
-<meta property="og:image" content="http://horaires-strasbourg.eu/favicon.png" />
+<meta property="og:image" content="https://horaires-strasbourg.netlib.re/favicon.png" />
 </head>
 <body>
 <div data-role="page">

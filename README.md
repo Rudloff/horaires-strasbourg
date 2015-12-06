@@ -1,4 +1,4 @@
 horaires-strasbourg
 ===================
 
-Source code for http://horaires-strasbourg.eu/
+Source code for https://horaires-strasbourg.netlib.re/
