@@ -17,16 +17,16 @@
 <title>Horaires de la Communauté urbaine de Strasbourg</title>
 <meta charset="UTF-8" />
 <link rel="stylesheet"
-href="jquery.mobile-1.3.2/jquery.mobile.structure-1.3.2.min.css" />
+href="bower_components/jquery-mobile-bower/css/jquery.mobile.structure-1.3.2.min.css" />
 <link href='https://fonts.googleapis.com/css?family=The+Girl+Next+Door'
     rel='stylesheet' type='text/css'>
 <link
     href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900'
     rel='stylesheet' type='text/css'>
 <link href='dist/main.css' rel='stylesheet' type='text/css'>
-<script src="jquery-1.9.1.min.js"></script>
+<script src="bower_components/jquery/jquery.min.js"></script>
 <script async
-src="jquery.mobile-1.3.2/jquery.mobile-1.3.2.min.js"></script>
+src="bower_components/jquery-mobile-bower/js/jquery.mobile-1.3.2.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description"
     content="Horaires des services de la Communauté urbaine de Strasbourg" />
@@ -54,54 +54,48 @@ src="jquery.mobile-1.3.2/jquery.mobile-1.3.2.min.js"></script>
 $url = 'http://media.strasbourg.eu/alfresco/d/d/workspace/SpacesStore/'.
     'eb8550eb-a479-4037-9533-e06977765f9a/export_des_horaires.csv';
 $timestampFile = 'data/timestamp.json';
-$csvFile = 'data/export_des_horaires.csv';
+$jsonFile = 'data/export.json';
 $lastUpdate = json_decode(file_get_contents($timestampFile));
 if (date('Y-m-d', strtotime($lastUpdate->date)) != date('Y-m-d')) {
     file_put_contents(
-        $csvFile, file_get_contents(
-            'http://media.strasbourg.eu/alfresco/d/d/workspace/SpacesStore/'.
-            'eb8550eb-a479-4037-9533-e06977765f9a/export_des_horaires.csv'
+        $jsonFile,
+        file_get_contents(
+            'https://www.strasbourg.eu/Cus-all-hook/api/jsonws/?cusplaceasset/getJson'
         )
     );
     file_put_contents($timestampFile, json_encode(new DateTime()));
 }
 setlocale(LC_TIME, 'fr_FR.UTF-8', 'fr_FR', 'fr');
-$handle = fopen($csvFile, 'r');
-while ($line = fgetcsv($handle, null, '|')) {
+$data = json_decode(file_get_contents($jsonFile));
+foreach ($data->list as $line) {
     $error = false;
-    if (!isset($headers)) {
-        $headers = $line;
+    echo '<li><a href="#', urlencode($line->nomLieu),
+    '" data-rel="dialog">', $line->nomLieu, '</a></li>';
+    $hours[$line->nomLieu] = '
+    <table data-role="table" class="ui-responsive">
+        <thead>
+        <tr>
+          <th scope="col">Jour</th>
+          <th scope="col">Horaires</th>
+        </tr>
+        </thead>
+        <tbody>';
+    if (!array_filter((array)$line->horaires->map)) {
+        $hours[$line->nomLieu] = '
+        <p>Nous sommes désolés mais la Communauté urbaine de Strasbourg
+        ne nous fournit pas encore les horaires de ce service.</p>';
+        $error=true;
     } else {
-        echo '<li><a href="#', urlencode($line[1]),
-        '" data-rel="dialog">', $line[1], '</a></li>';
-        $hours[$line[1]] = '
-        <table data-role="table" class="ui-responsive">
-            <thead>
-    <tr>
-      <th scope="col">Jour</th>
-      <th scope="col">Horaires</th>
-    </tr>
-  </thead>
-  <tbody>';
-        $date = new DateTime();
-        for ($i=2; $i<=8; $i++) {
-            if (empty($line[$i])) {
-                $hours[$line[1]] = '
-                <p>Nous sommes désolés mais la Communauté urbaine de Strasbourg
-                ne nous fournit pas encore les horaires de ce service.</p>';
-                $error=true;
-                break;
-            }
-            $hours[$line[1]] .= '<tr><th scope="row">'.strftime(
+        foreach ($line->horaires->map as $date=>$hour) {
+            $date = new DateTime($date);
+
+            $hours[$line->nomLieu] .= '<tr><th scope="row">'.strftime(
                 '%A %e %B', $date->getTimestamp()
             ).'</th><td>'.str_replace(
-                '*', '', str_replace(';', '<br/>', $line[$i])
+                '*', '', str_replace(';', '<br/>', $hour)
             ).'</td></tr>';
-            $date->add(new DateInterval('P1D'));
         }
-        if (!$error) {
-            $hours[$line[1]] .= '</tbody></table>';
-        }
+        $hours[$line->nomLieu] .= '</tbody></table>';
     }
 }
 ?>

@@ -1,0 +1,6 @@
+{
+    "name": "horaires-strasbourg",
+    "dependencies": {
+        "jquery-mobile-bower": "~1.3.2"
+    }
+}
