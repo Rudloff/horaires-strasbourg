@@ -54,54 +54,48 @@ src="bower_components/jquery-mobile-bower/js/jquery.mobile-1.3.2.min.js"></scrip
 $url = 'http://media.strasbourg.eu/alfresco/d/d/workspace/SpacesStore/'.
     'eb8550eb-a479-4037-9533-e06977765f9a/export_des_horaires.csv';
 $timestampFile = 'data/timestamp.json';
-$csvFile = 'data/export_des_horaires.csv';
+$jsonFile = 'data/export.json';
 $lastUpdate = json_decode(file_get_contents($timestampFile));
 if (date('Y-m-d', strtotime($lastUpdate->date)) != date('Y-m-d')) {
     file_put_contents(
-        $csvFile, file_get_contents(
-            'http://media.strasbourg.eu/alfresco/d/d/workspace/SpacesStore/'.
-            'eb8550eb-a479-4037-9533-e06977765f9a/export_des_horaires.csv'
+        $jsonFile,
+        file_get_contents(
+            'https://www.strasbourg.eu/Cus-all-hook/api/jsonws/?cusplaceasset/getJson'
         )
     );
     file_put_contents($timestampFile, json_encode(new DateTime()));
 }
 setlocale(LC_TIME, 'fr_FR.UTF-8', 'fr_FR', 'fr');
-$handle = fopen($csvFile, 'r');
-while ($line = fgetcsv($handle, null, '|')) {
+$data = json_decode(file_get_contents($jsonFile));
+foreach ($data->list as $line) {
     $error = false;
-    if (!isset($headers)) {
-        $headers = $line;
+    echo '<li><a href="#', urlencode($line->nomLieu),
+    '" data-rel="dialog">', $line->nomLieu, '</a></li>';
+    $hours[$line->nomLieu] = '
+    <table data-role="table" class="ui-responsive">
+        <thead>
+        <tr>
+          <th scope="col">Jour</th>
+          <th scope="col">Horaires</th>
+        </tr>
+        </thead>
+        <tbody>';
+    if (!array_filter((array)$line->horaires->map)) {
+        $hours[$line->nomLieu] = '
+        <p>Nous sommes désolés mais la Communauté urbaine de Strasbourg
+        ne nous fournit pas encore les horaires de ce service.</p>';
+        $error=true;
     } else {
-        echo '<li><a href="#', urlencode($line[1]),
-        '" data-rel="dialog">', $line[1], '</a></li>';
-        $hours[$line[1]] = '
-        <table data-role="table" class="ui-responsive">
-            <thead>
-    <tr>
-      <th scope="col">Jour</th>
-      <th scope="col">Horaires</th>
-    </tr>
-  </thead>
-  <tbody>';
-        $date = new DateTime();
-        for ($i=2; $i<=8; $i++) {
-            if (empty($line[$i])) {
-                $hours[$line[1]] = '
-                <p>Nous sommes désolés mais la Communauté urbaine de Strasbourg
-                ne nous fournit pas encore les horaires de ce service.</p>';
-                $error=true;
-                break;
-            }
-            $hours[$line[1]] .= '<tr><th scope="row">'.strftime(
+        foreach ($line->horaires->map as $date=>$hour) {
+            $date = new DateTime($date);
+
+            $hours[$line->nomLieu] .= '<tr><th scope="row">'.strftime(
                 '%A %e %B', $date->getTimestamp()
             ).'</th><td>'.str_replace(
-                '*', '', str_replace(';', '<br/>', $line[$i])
+                '*', '', str_replace(';', '<br/>', $hour)
             ).'</td></tr>';
-            $date->add(new DateInterval('P1D'));
         }
-        if (!$error) {
-            $hours[$line[1]] .= '</tbody></table>';
-        }
+        $hours[$line->nomLieu] .= '</tbody></table>';
     }
 }
 ?>
